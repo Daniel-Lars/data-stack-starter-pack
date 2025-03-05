@@ -1,0 +1,21 @@
+analytics_data_stack:
+  outputs:
+    dev:
+      dbname: webshop
+      host: localhost
+      pass: admin
+      port: 5432
+      schema: public
+      threads: 4
+      type: postgres
+      user: admin
+    prod:
+      dbname: webshop
+      host: localhost
+      pass: admin
+      port: 2345
+      schema: public
+      threads: 4
+      type: postgres
+      user: admin
+  target: dev
