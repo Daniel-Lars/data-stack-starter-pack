@@ -1,7 +1,7 @@
 sources:
   - name: raw_webshop
     database: "{{ target.dbname }}"
-    schema: raw
+    schema: foreign_raw
     tables:
 
       - name: category
