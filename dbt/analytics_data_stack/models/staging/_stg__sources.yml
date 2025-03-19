@@ -5,6 +5,8 @@ sources:
     tables:
 
       - name: category
+        config:
+          sample_type: full_sample
         columns:
           - name: name
             data_type: character varying
@@ -18,6 +20,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: customer
+        config:
+          sample_type: full_sample
         columns:
           - name: name
             data_type: character varying
@@ -33,6 +37,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: customeraddress
+        config:
+          sample_type: small_sample
         columns:
           - name: customer
             data_type: integer
