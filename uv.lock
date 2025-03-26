@@ -212,6 +212,15 @@ book = [
     { name = "mkdocs" },
     { name = "mkdocs-material" },
 ]
+ci = [
+    { name = "isort" },
+    { name = "ruff" },
+    { name = "shandy-sqlfmt", extra = ["jinjafmt"] },
+    { name = "yamllint" },
+]
+ci2 = [
+    { name = "dbt" },
+]
 dev = [
     { name = "isort" },
     { name = "pre-commit" },
@@ -232,6 +241,13 @@ book = [
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-material", specifier = ">=9.6.7" },
 ]
+ci = [
+    { name = "isort", specifier = ">=6.0.0" },
+    { name = "ruff", specifier = ">=0.9.6" },
+    { name = "shandy-sqlfmt", extras = ["jinjafmt"], specifier = ">=0.26.0" },
+    { name = "yamllint", specifier = ">=1.35.1" },
+]
+ci2 = [{ name = "dbt", virtual = "." }]
 dev = [
     { name = "isort", specifier = ">=6.0.0" },
     { name = "pre-commit", specifier = ">=4.0.1" },

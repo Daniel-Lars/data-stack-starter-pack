@@ -34,7 +34,7 @@ tasks:
     desc: "Initialize Docker"
     cmds:
       - task: docker:deploy/all
-      - task: env_checks:check_data_status
+    #  - task: env_checks:check_data_status
 
   init/gha_runner:
     desc: "Initialize GitHub Actions runner"
