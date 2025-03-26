@@ -6,7 +6,7 @@ on:
 
 jobs:
   CI_jobs:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD}}
@@ -22,8 +22,19 @@ jobs:
       - name: Install Python
         run: uv python install
 
+      - name: Install deps
+        run: uv sync
+
       - name: Install Project Dependencies
         run: uv sync --group ci
 
       - name: Ruff Linting
         uses: astral-sh/ruff-action@v3
+
+      - name: echo SHA
+        run: echo "$GIT_SHA"
+      - name: dbt build
+        run: |
+            cd ./dbt/analytics_data_stack/
+            uv run dbt deps
+            uv run dbt build --target test
