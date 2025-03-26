@@ -34,4 +34,4 @@ jobs:
       - name: echo SHA
         run: echo "$GIT_SHA"
       - name: dbt build
-        run: dbt build --target test
+        run: uv run dbt build --target test
