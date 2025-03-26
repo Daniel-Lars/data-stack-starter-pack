@@ -3,7 +3,7 @@
     {% do log("Yooooo running the full sample") %}
     {% set sql %}
     CREATE SCHEMA IF NOT EXISTS {{ target.schema }};
-    DROP TABLE IF EXISTS webshop.{{ target.schema }}.{{table_name}};
+    DROP TABLE IF EXISTS webshop.{{ target.schema }}.{{table_name}} CASCADE;
     create table webshop.{{ target.schema }}.{{table_name}} as
     select *
     from foreign_raw.{{table_name}}
