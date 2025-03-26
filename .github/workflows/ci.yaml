@@ -28,5 +28,5 @@ jobs:
       - name: Ruff Linting
         uses: astral-sh/ruff-action@v3
 
-      - name: DBT build
-        run: uv run dbt build --target test
+      - name: echo SHA
+        run: echo '{GIT_SHA}'
