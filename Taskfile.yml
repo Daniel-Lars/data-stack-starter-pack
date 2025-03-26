@@ -55,13 +55,11 @@ tasks:
   reboot/gha_runner:
     desc: Reboots gha runner and deletes data and tmp folder
     cmds:
+      - chmod -R 777 ./infra/gha_runner/*
       - docker compose down gha_runner
-      # - rm -rf ./infra/gha_runner/data
-      # - rm -rf ./infra/gha_runner/tmp
-      # - echo "GitHub actions runner destroyed"
-      # - mkdir ./infra/gha_runner/data
-      # - mkdir ./infra/gha_runner/tmp
-      # - chmod +x ./infra/gha_runner/*
+      - rm -rf ./infra/gha_runner/data
+      - rm -rf ./infra/gha_runner/tmp
+      - echo "GitHub actions runner destroyed"
       - echo "gha_runner cache cleaned"
       - docker compose up -d gha_runner
       - echo "GitHub actions runner started"
