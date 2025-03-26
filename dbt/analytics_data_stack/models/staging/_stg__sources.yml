@@ -38,7 +38,7 @@ sources:
 
       - name: customeraddress
         config:
-          sample_type: small_sample
+          sample_type: full_sample
         columns:
           - name: customer
             data_type: integer
@@ -92,6 +92,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: paymentprovider
+        config:
+          sample_type: full_sample
         columns:
           - name: name
             data_type: character varying
@@ -107,6 +109,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: product
+        config:
+          sample_type: full_sample
         columns:
           - name: name
             data_type: character varying
@@ -132,6 +136,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: productbrand
+        config:
+          sample_type: full_sample
         columns:
           - name: name
             data_type: character varying
@@ -143,6 +149,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: productcategory
+        config:
+          sample_type: full_sample
         columns:
           - name: category
             data_type: integer
@@ -156,6 +164,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: orders
+        config:
+          sample_type: full_sample
         columns:
           - name: customer
             data_type: integer
@@ -171,6 +181,8 @@ sources:
             data_type: timestamp without time zone
 
       - name: orderitem
+        config:
+          sample_type: full_sample
         columns:
           - name: order
             data_type: integer

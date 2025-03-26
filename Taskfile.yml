@@ -23,7 +23,7 @@ tasks:
 
   init/dbt:
     desc: "Initialize dbt"
-    dir: ./dbt
+    dir: ./dbt/analytics_data_stack
     cmds:
       - uv run dbt deps
       - uv run dbt seed

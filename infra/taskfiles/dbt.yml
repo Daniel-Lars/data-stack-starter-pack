@@ -7,10 +7,10 @@ tasks:
   # dbt
   get_samples:
     desc: "Get sample data for dbt"
-    dir: ./dbt
+    dir: ./dbt/analytics_data_stack
     cmds:
-      - "uv run dbt run-operation create_all_samples --args '{source_schema: foreign_raw}' --target sample-dev"
-      - "uv run dbt run-operation create_all_samples --args '{source_schema: foreign_raw}' --target sample-test"
+      - "dbt run-operation create_all_samples --target sample-dev"
+      - "dbt run-operation create_all_samples --target sample-test"
     preconditions:
       - task: env_checks:check_dbt
       - task: env_checks:check_dbt_initialized
