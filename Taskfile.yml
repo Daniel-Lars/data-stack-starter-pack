@@ -52,6 +52,19 @@ tasks:
       - rm -rf ./infra/gha_runner/data
       - echo "All infra destroyed"
 
+  reboot/gha_runner:
+    desc: Reboots gha runner and deletes data and tmp folder
+    cmds:
+      - docker compose down gha_runner
+      - rm -rf ./infra/gha_runner/data
+      - rm -rf ./infra/gha_runner/tmp
+      - echo "GitHub actions runner destroyed"
+      - echo "gha_runner cache cleaned"
+      - docker compose up -d gha_runner
+      - echo "GitHub actions runner started"
+    preconditions:
+      - task: env_checks:check_github_token
+
   check/gh_status:
     desc: "Check if GitHub Actions runner is running"
     cmds:
