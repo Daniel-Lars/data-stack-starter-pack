@@ -53,22 +53,4 @@ jobs:
       - name: Cleanup Test Schemas
         if: always()  # Ensures this step runs even if the job fails
         run: |
-          uv run bash -c "PGPASSWORD=${{ secrets.POSTGRES_PASSWORD}} psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c '
-          DO $$
-          DECLARE
-              r RECORD;
-          BEGIN
-              FOR r IN (SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE ''ci_test_%'')
-              LOOP
-                  EXECUTE ''DROP SCHEMA '' || r.schema_name || '' CASCADE'';
-              END LOOP;
-          END $$;'" psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c "
-          DO $$
-          DECLARE
-              r RECORD;
-          BEGIN
-              FOR r IN (SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'ci_test_%')
-              LOOP
-                  EXECUTE 'DROP SCHEMA ' || r.schema_name || ' CASCADE';
-              END LOOP;
-          END $$;"
+          psql -h postgres -U postgres -c 'select * from webshop.raw.customer limit 10;'
