@@ -13,6 +13,15 @@ FOREIGN_DB_PORT="5432"
 FOREIGN_SCHEMA="raw"
 RAW_SCHEMA="foreign_raw"
 
+# SQL commands for logging configuration
+SQL_LOGGING_COMMANDS="
+-- Set logging parameters
+ALTER SYSTEM SET log_statement = 'all';
+ALTER SYSTEM SET log_destination = 'stderr';  # Direct logs to stderr (can be seen in docker logs)
+ALTER SYSTEM SET log_directory = '/var/log/postgresql';  # Log directory
+-- You can add more logging options as required
+"
+
 # SQL commands
 SQL_COMMANDS="
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
@@ -24,3 +33,6 @@ ALTER SCHEMA public RENAME TO $RAW_SCHEMA;
 
 # Execute SQL commands using psql
 psql -U $DB_USER -d $DB_NAME -c "$SQL_COMMANDS"
+
+# Execute SQL commands using psql
+psql -U $DB_USER -d $DB_NAME -c "$SQL_LOGGING_COMMANDS"
