@@ -31,14 +31,6 @@ jobs:
       - name: Ruff Linting
         uses: astral-sh/ruff-action@v3
 
-      - name: Install PostgreSQL client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client
-
-      - name: echo PR Number
-        run: echo "$PR_NUMBER"
-
       - name: dbt build
         run: |
             cd ./dbt/analytics_data_stack/
@@ -59,9 +51,3 @@ jobs:
         with:
           name: manifest.json
           path: /runner/data/artifatcs/
-
-
-      - name: Cleanup Test Schemas
-        if: always()  # Ensures this step runs even if the job fails
-        run: |
-          PGPASSWORD=$POSTGRES_PASSWORD psql -h test_postgres -U ${{ secrets.POSTGRES_USER}} -d ${{ secrets.POSTGRES_DB }} -c "DROP SCHEMA IF EXISTS ci_test_${PR_NUMBER} CASCADE;"
