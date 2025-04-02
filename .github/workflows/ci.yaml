@@ -31,6 +31,11 @@ jobs:
       - name: Ruff Linting
         uses: astral-sh/ruff-action@v3
 
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
       - name: echo SHA
         run: echo "$GIT_SHA"
 
