@@ -40,5 +40,6 @@ jobs:
       - name: dbt build
         run: |
             cd ./dbt/analytics_data_stack/
+            uv run dbt debug
             uv run dbt deps
             uv run dbt build --target test
