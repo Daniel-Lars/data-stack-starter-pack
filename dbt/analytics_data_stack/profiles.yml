@@ -11,7 +11,7 @@ analytics_data_stack:
       user: admin
     test:
       dbname: webshop
-      host: localhost
+      host: test_postgres
       pass: admin
       port: 5678
       schema: "{{ env_var('GIT_SHA', 'test') }}"
