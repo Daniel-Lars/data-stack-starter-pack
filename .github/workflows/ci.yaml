@@ -44,8 +44,9 @@ jobs:
             uv run dbt deps
             uv run dbt run-operation create_all_samples --target sample-test
             uv run dbt build --target test
-    post:
-      - name: clean-up
+
+      - name: Cleanup Test Schemas
+        if: always()  # Ensures this step runs even if the job fails
         run: |
           psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c "
           DO $$
