@@ -53,4 +53,4 @@ jobs:
       - name: Cleanup Test Schemas
         if: always()  # Ensures this step runs even if the job fails
         run: |
-          psql -h ${{ secrets.POSTGRES_DB}} -U ${{ secrets.POSTGRES_USER}} -c 'select * from webshop.raw.customer limit 10;'
+          psql -h test_postgres -U ${{ secrets.POSTGRES_USER}} -c 'select * from webshop.raw.customer limit 10;'
