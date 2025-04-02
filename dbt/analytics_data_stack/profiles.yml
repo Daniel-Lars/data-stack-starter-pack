@@ -38,7 +38,7 @@ analytics_data_stack:
       user: admin
     sample-test:
       dbname: webshop
-      host: test_postgres
+      host: localhost
       pass: admin
       port: 5432
       schema: raw
