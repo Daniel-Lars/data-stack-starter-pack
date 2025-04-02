@@ -53,7 +53,7 @@ jobs:
       - name: Cleanup Test Schemas
         if: always()  # Ensures this step runs even if the job fails
         run: |
-          psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c "
+          PGPASSWORD=${{ secrets.POSTGRES_PASSWORD}} psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c "
           DO $$
           DECLARE
               r RECORD;
