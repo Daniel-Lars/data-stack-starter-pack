@@ -463,3 +463,6 @@ infra/gha_runner/*
 infra/minio/data/*
 dbt/.user.yml
 !dbt/macros/*/__*.sql
+
+
+artifacts/*.json
