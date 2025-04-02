@@ -39,15 +39,15 @@ jobs:
       - name: echo PR Number
         run: echo "$PR_NUMBER"
 
-      # - name: dbt build
-      #   run: |
-      #       cd ./dbt/analytics_data_stack/
-      #       uv run dbt debug --target test
-      #       uv run dbt deps
-      #       uv run dbt run-operation create_all_samples --target sample-test
-      #       uv run dbt build --target test
+      - name: dbt build
+        run: |
+            cd ./dbt/analytics_data_stack/
+            uv run dbt debug --target test
+            uv run dbt deps
+            uv run dbt run-operation create_all_samples --target sample-test
+            uv run dbt build --target test
 
       - name: Cleanup Test Schemas
         if: always()  # Ensures this step runs even if the job fails
         run: |
-          PGPASSWORD=$POSTGRES_PASSWORD psql -h test_postgres -U ${{ secrets.POSTGRES_USER}} -d ${{ secrets.POSTGRES_DB }} -c 'DROP SCHEMA IF EXISTS ci_$PR_NUMBER CASCADE;'
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h test_postgres -U ${{ secrets.POSTGRES_USER}} -d ${{ secrets.POSTGRES_DB }} -c 'DROP SCHEMA IF EXISTS ci_${PR_NUMBER} CASCADE;'
