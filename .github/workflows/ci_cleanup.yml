@@ -1,6 +1,7 @@
 name: CI_pipeline
 on:
-  push:
+  pull_request:
+    types: [closed]  # Trigger when a pull request is closed (merged or not)
     branches:
       - main
 
