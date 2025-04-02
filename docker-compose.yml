@@ -56,7 +56,7 @@ services:
         condition: service_healthy
 
   gha_runner:
-    image: myoung34/github-runner:latest
+    image: myoung34/github-runner:2.323.0-ubuntu-focal
     restart: always
     environment:
       REPO_URL: "https://github.com/${REPO_URL}"
@@ -66,8 +66,10 @@ services:
       CONFIGURED_ACTIONS_RUNNER_FILES_DIR: /runner/data
       RUNNER_SCOPE: repo
       LABELS: linux,x64,self-hosted
+      DISABLE_AUTOMATIC_DEREGISTRATION: true # <-- this is importante
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./infra/gha_runner/tmp:/tmp/runner
       - ./infra/gha_runner/data:/runner/data
       - ./logs/gha_runner:/runner/data/_diag
+      - ./artifacts:/runner/data/artifatcs

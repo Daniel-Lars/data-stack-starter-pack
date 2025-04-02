@@ -1,0 +1,27 @@
+name: CI_pipeline
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI_jobs:
+    runs-on: self-hosted
+    env:
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD}}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB}}
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+      - name: Checkout # clones and pulls the repo at pull request SHA
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Cleanup Test Schemas
+        if: always()  # Ensures this step runs even if the job fails
+        run: |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h test_postgres -U ${{ secrets.POSTGRES_USER}} -d ${{ secrets.POSTGRES_DB }} -c "DROP SCHEMA IF EXISTS ci_test_${PR_NUMBER} CASCADE;"
