@@ -38,9 +38,9 @@ analytics_data_stack:
       user: admin
     sample-test:
       dbname: webshop
-      host: localhost
+      host: test_postgres
       pass: admin
-      port: 5678
+      port: 5432
       schema: raw
       threads: 4
       type: postgres
