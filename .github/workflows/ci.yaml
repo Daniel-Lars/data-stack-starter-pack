@@ -52,6 +52,13 @@ jobs:
         with:
           name: manifest.json
           path: dbt/analytics_data_stack/target/manifest.json
+          overwrite: True
+
+      - name: Download dbt manifest.json
+        uses: actions/download-artifact@v4
+        with:
+          name: manifest.json
+          path: /runner/data/artifatcs/
 
 
       - name: Cleanup Test Schemas
