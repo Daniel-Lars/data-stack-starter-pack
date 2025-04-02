@@ -44,16 +44,3 @@ jobs:
             uv run dbt deps
             uv run dbt run-operation create_all_samples --target sample-test
             uv run dbt build --target test
-    post:
-      - name: clean-up
-        run: |
-          psql -h test_postgres -p 5432 -U $POSTGRES_USER -d $POSTGRES_DB -c "
-          DO $$
-          DECLARE
-              r RECORD;
-          BEGIN
-              FOR r IN (SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'ci_test_%')
-              LOOP
-                  EXECUTE 'DROP SCHEMA ' || r.schema_name || ' CASCADE';
-              END LOOP;
-          END $$;"
