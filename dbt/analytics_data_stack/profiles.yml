@@ -14,7 +14,7 @@ analytics_data_stack:
       host: test_postgres
       pass: admin
       port: 5432
-      schema: ci_test_"{{ env_var('GIT_SHA', 'test') }}"
+      schema: "ci_test_{{ env_var('GIT_SHA', 'test') }}"
       threads: 4
       type: postgres
       user: admin
