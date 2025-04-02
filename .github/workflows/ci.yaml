@@ -33,6 +33,10 @@ jobs:
 
       - name: echo SHA
         run: echo "$GIT_SHA"
+
+      - name: echo
+        run: echo "Hello world!"
+
       - name: dbt build
         run: |
             cd ./dbt/analytics_data_stack/
