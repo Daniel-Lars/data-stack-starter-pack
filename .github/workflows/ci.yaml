@@ -36,7 +36,6 @@ jobs:
             cd ./dbt/analytics_data_stack/
             uv run dbt debug --target test
             uv run dbt deps
-            uv run dbt run-operation create_all_samples --target sample-test
             uv run dbt build --target test
 
       - name: Save dbt manifest.json
