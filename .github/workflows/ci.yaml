@@ -47,6 +47,13 @@ jobs:
             uv run dbt run-operation create_all_samples --target sample-test
             uv run dbt build --target test
 
+      - name: Save dbt manifest.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: manifest.json
+          pattern: manifest.json
+
+
       - name: Cleanup Test Schemas
         if: always()  # Ensures this step runs even if the job fails
         run: |
